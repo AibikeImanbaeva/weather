@@ -3,3 +3,8 @@ export type Weather = {
         temp: number
     }
 }
+
+
+export type Time = {
+timezone: number 
+}
