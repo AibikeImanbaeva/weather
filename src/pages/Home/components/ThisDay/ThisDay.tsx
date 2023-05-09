@@ -14,21 +14,14 @@ interface Props  {
 
 const ThisDay = ({ weather, time }: Props) => {
  
+  
+
   const now = new Date();
   const offset = time.timezone / 60; // переводим смещение в часы
   const bishkekTime = new Date(now.getTime() + offset * 60 * 60 * 1000);
+  const timeString = bishkekTime.toLocaleTimeString('ru-RU', { hour12: false});
   
-  // Форматируем время в формат "чч:мм"
-  const hours = bishkekTime.getHours().toString().padStart(2, '0');
-  const minutes = bishkekTime.getMinutes().toString().padStart(2, '0');
-  const timeString = `${hours}:${minutes}`;
-  
-  // Форматируем дату в формат "дд.мм.гггг"
-  const date = bishkekTime.getDate().toString().padStart(2, '0');
-  const month = (bishkekTime.getMonth() + 1).toString().padStart(2, '0');
-  const year = bishkekTime.getFullYear().toString();
-  const dateString = `${date}.${month}.${year}`;
-  
+
 
   return (
     <div className={styles.this__day}>
@@ -42,8 +35,8 @@ const ThisDay = ({ weather, time }: Props) => {
       </div>
       <div className={styles.bottom__block}>
       <div className={styles.this__time}>Время:{timeString} <span></span></div>
-      <div className={styles.this__city}>Дата:{dateString} <br />
-       <span>Бишкек</span>
+      <div className={styles.this__city}>город: Бишкек<br />
+   
        </div>
       </div>
     </div>
