@@ -19,7 +19,7 @@ const ThisDay = ({ weather, time }: Props) => {
   const now = new Date();
   const offset = time.timezone / 60; // переводим смещение в часы
   const bishkekTime = new Date(now.getTime() + offset * 60 * 60 * 1000);
-  const timeString = bishkekTime.toLocaleTimeString('ru-RU', { hour12: false});
+  const timeString = bishkekTime.toLocaleTimeString('ru-RU', {  hour: '2-digit', minute: '2-digit', hour12: false});
   
 
 
