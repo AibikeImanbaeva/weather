@@ -16,7 +16,7 @@ export const Home = (props: Props) => {
 const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
   useEffect(() => {
     dispatch(fetchCurrentWeather('bishkek'));
-    dispatch(fetchCurrentTime('bishkek'))
+   
   }, []);
  
 
@@ -24,7 +24,7 @@ const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
     <div className={styles.home}>
       <div className={styles.wrapper}>
         <ThisDay weather={weather} time={time}/>
-        <ThisDayInfo />
+        <ThisDayInfo weather={weather}/>
       </div>
       <Days />
     </div>
