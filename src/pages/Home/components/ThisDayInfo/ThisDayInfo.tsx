@@ -14,6 +14,7 @@ export interface Item {
 }
 
 const ThisDayInfo = ({weather}: Props) => {
+// console.log(weather);
 
   const pressureInHpa = weather.main.pressure;
   const pressureInMmHg = pressureInHpa * 0.750062;

@@ -8,17 +8,23 @@ import { fetchCurrentWeather } from '../../../store/thunks/fetchCurrentWeather';
 // import { Weather } from '../../../store/types/types';
 import { useCustomSelector } from '../../../hooks/store';
 import { Props } from 'react-select';
-import { fetchCurrentTime } from '../../../store/thunks/fetchCurrentTime';
+import { fetchWeekWeather } from '../../../store/thunks/fetchWeekWeather';
+
 
 export const Home = (props: Props) => {
   const dispatch = useCustomDispatch();
   const { weather } = useCustomSelector(state=> state.currentWeatherSliceReducer);
 const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
+const {week} = useCustomSelector(state => state.weekWeatherSliceReducer)
   useEffect(() => {
     dispatch(fetchCurrentWeather('bishkek'));
    
   }, []);
  
+useEffect (()=> {
+  dispatch(fetchWeekWeather('bishkek'))
+},[])
+
 
   return (
     <div className={styles.home}>
@@ -26,7 +32,7 @@ const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
         <ThisDay weather={weather} time={time}/>
         <ThisDayInfo weather={weather}/>
       </div>
-      <Days />
+      <Days week={week}/>
     </div>
   );
 };

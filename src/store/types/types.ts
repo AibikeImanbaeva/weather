@@ -22,3 +22,20 @@ timezone: number
 export type CityName = {
     name: string
 }
+export interface Week {
+    list: {
+        dt_txt: string,
+        main: {
+          temp: number;
+          feels_like: number;
+     
+        },
+      
+      }[];
+    isLoading: boolean;
+    response: {
+      status: number;
+      message: string;
+    };}
+  
+  

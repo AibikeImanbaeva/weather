@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { Time } from '../types/types';
+import { Week} from '../types/types';
 import { AxiosResponse } from 'axios';
 
-type CurrentTime = {
-    time: Time,
+type WeekWeather = {
+  
+    week:Week,
     isLoading: boolean,
     response: Response
 }
@@ -13,39 +14,42 @@ type Response ={
     message: string
 }
 
-const initialState: CurrentTime = {
-    time: {
-        timezone: 0
+
+const initialState: WeekWeather = {
+    week: {
+      list: [],
+      isLoading: false,
+      response: {
+        status: 0,
+        message:'',
+      },
     },
-    
     isLoading: false,
     response: {
-        status: 0,
-        message:''
-    }
+      status: 0,
+      message:'',
+    },
+  }
 
-}
-
-
-export const currentTimeSlice = createSlice({
-    name: 'current_time',
+export const weekWeatherSlice = createSlice({
+    name: 'week_weather',
     initialState,
     reducers: {
-        fetchCurrentTime(state) {
+        fetchWeekWeather(state) {
             state.isLoading = true;
         },
-        fetchCurrentTimeSuccess(state, 
-            action: PayloadAction<AxiosResponse<Time>
+        fetchWeekWeatherSuccess(state, 
+            action: PayloadAction<AxiosResponse<Week>
             > ){
                 state.isLoading = false;
-            state.time = action.payload.data;
+            state.week= action.payload.data;
             state.response = {
                 status: action.payload.status,
                 message: action.payload.statusText,
             }
         },
-        fetchCurrentWeatherError(state, 
-            action: PayloadAction<AxiosResponse<Time>
+        fetchWeekWeatherError(state, 
+            action: PayloadAction<AxiosResponse<Week>
             > ){
             
             state.isLoading = false;
@@ -57,5 +61,4 @@ export const currentTimeSlice = createSlice({
     }
 })
 
-
-export default currentTimeSlice.reducer
+export default weekWeatherSlice.reducer
