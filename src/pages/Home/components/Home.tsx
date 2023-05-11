@@ -11,6 +11,7 @@ import { Props } from 'react-select';
 import { fetchWeekWeather } from '../../../store/thunks/fetchWeekWeather';
 
 
+
 export const Home = (props: Props) => {
   const dispatch = useCustomDispatch();
   const { weather } = useCustomSelector(state=> state.currentWeatherSliceReducer);
@@ -32,7 +33,7 @@ useEffect (()=> {
         <ThisDay weather={weather} time={time}/>
         <ThisDayInfo weather={weather}/>
       </div>
-      <Days week={week}/>
+      <Days week={week} weather={weather}/>
     </div>
   );
 };

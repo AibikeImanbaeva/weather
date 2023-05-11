@@ -5,14 +5,12 @@ interface Props {}
 export const Tabs = (props: Props) => {
   const tabs = [
     {
-      value: 'На неделю',
+      value: 'На 5 дней',
     },
     {
-      value: 'На 10 дней',
+      value: 'По часам на сегодня',
     },
-    {
-      value: 'На месяц',
-    },
+    
   ];
   return (
     <div className={styles.tabs}>

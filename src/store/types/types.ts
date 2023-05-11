@@ -24,12 +24,14 @@ export type CityName = {
 }
 export interface Week {
     list: {
-        dt_txt: string,
-        main: {
-          temp: number;
-          feels_like: number;
-     
-        },
+      dt: number,
+      main: {
+        temp: number;
+        feels_like: number;
+      },
+      weather:{
+        description: string,
+      }[],
       
       }[];
     isLoading: boolean;
