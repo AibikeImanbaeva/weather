@@ -18,16 +18,16 @@ export const Card = ({ day }: Props) => {
 //  let iconId;
   
 let iconId;
-if (day.temp >  20 ) {
-  iconId = "sun";
-} else if (day.temp >  15) {
-  iconId = "small_rain";
-} else if (day.temp >  10) {
+if (day.info ===  'overcast clouds') {
   iconId = "mainly_cloudy";
-} else if (day.temp >  0) {
-  iconId = "smail_rain";
-} else {
-  iconId = null; 
+} else if (day.info ===  'light rain') {
+  iconId = "small_rain";
+}else if (day.info ===  'sun') {
+  iconId = "sun";
+} else if (day.info ===  'scy is clear') {
+  iconId = "sun";
+}  else {
+  iconId = 'sun'; 
 }
 
   return (

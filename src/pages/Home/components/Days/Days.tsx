@@ -49,8 +49,9 @@ const dayOfWeek = today.getDay();
 
 const formatDate = (date: Date) =>
   `${date.getDate()} ${months[date.getMonth()]}`;
-console.log(week.list[0].main.temp)
 
+
+console.log(week);
 
 
 const days = isLoading
