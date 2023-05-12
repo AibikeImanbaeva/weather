@@ -3,10 +3,10 @@ import { currentWeatherSlice } from "../slices/currentWeatherSlice";
 import { AppDispatch } from "../store"
 
 export const fetchCurrentWeather =
-  (payload: string) => async (dispatch: AppDispatch) => {
+  (latitude: string, longitude: string) => async (dispatch: AppDispatch) => {
     try {
       dispatch(currentWeatherSlice.actions.fetchCurrentWeather());
-      const res = await WeatherService.getCurrentWeather(payload);
+      const res = await WeatherService.getCurrentWeather(latitude, longitude);
       if (res.status === 200) {
         dispatch(currentWeatherSlice.actions.fetchCurrentWeatherSuccess(res));
       } else {

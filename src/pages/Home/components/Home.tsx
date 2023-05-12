@@ -10,21 +10,38 @@ import { useCustomSelector } from '../../../hooks/store';
 import { Props } from 'react-select';
 import { fetchWeekWeather } from '../../../store/thunks/fetchWeekWeather';
 
+import { useGeolocated } from "react-geolocated";
 
 
-export const Home = (props: Props) => {
+
+
+export const Home = (props: Props)=> {
+  const geo =  useGeolocated()
+  const { coords } = geo || {};
+  // const { latitude, longitude } = geo
   const dispatch = useCustomDispatch();
   const { weather } = useCustomSelector(state=> state.currentWeatherSliceReducer);
 const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
 const {week} = useCustomSelector(state => state.weekWeatherSliceReducer)
-  useEffect(() => {
-    dispatch(fetchCurrentWeather('bishkek'));
-   
-  }, []);
- 
-useEffect (()=> {
-  dispatch(fetchWeekWeather('bishkek'))
-},[])
+
+
+useEffect(() => {
+  if (coords) {
+    const { latitude, longitude } = coords;
+    dispatch(fetchCurrentWeather(latitude.toString(), longitude.toString()))
+  }
+}, [coords]);
+
+useEffect(() => {
+  const cachedWeek = localStorage.getItem('week');
+  if (cachedWeek) {
+    dispatch(fetchWeekWeather(JSON.parse(cachedWeek)));
+  } else {
+    dispatch(fetchWeekWeather('bishkek'));
+  }
+}, [dispatch]);
+
+
 
 
   return (

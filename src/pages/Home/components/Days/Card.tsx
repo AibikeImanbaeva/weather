@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const Card = ({ day }: Props) => {
- console.log(day)
+//  console.log(day)
 //  let iconId;
   
 let iconId;

@@ -23,7 +23,7 @@ weather:Weather
 
 export const Days = ({ week }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
-
+// console.log(week)
   useEffect(() => {
     if (week && week.list) {
       setIsLoading(false);
@@ -51,7 +51,7 @@ const formatDate = (date: Date) =>
   `${date.getDate()} ${months[date.getMonth()]}`;
 
 
-console.log(week);
+// console.log(week);
 
 
 const days = isLoading

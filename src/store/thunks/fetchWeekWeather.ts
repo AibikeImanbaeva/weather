@@ -8,6 +8,7 @@ export const fetchWeekWeather = (payload:string) => async (dispatch:AppDispatch)
         const res = await WeatherWeekService.getWeekWeather(payload);
         if (res.status === 200) {
           dispatch(weekWeatherSlice.actions.fetchWeekWeatherSuccess(res));
+          localStorage.setItem('week', JSON.stringify(res.data));
         } else {
           dispatch(weekWeatherSlice.actions.fetchWeekWeatherError(res));
         }
