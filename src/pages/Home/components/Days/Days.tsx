@@ -51,55 +51,55 @@ const formatDate = (date: Date) =>
   `${date.getDate()} ${months[date.getMonth()]}`;
 
 
-// console.log(week);
+console.log(dayOfWeek);
 
 
 const days = isLoading
   ? []
-  : [
-      {
-        day: "Сегодня",
-        day_info: formatDate(today),
-        icon_id: "small_rain_sun",
-        temp: Math.floor(week.list[0]?.main?.temp),
-        info: `${week.list[dayOfWeek]?.weather[0]?.description}`,
-      },
-      {
-        day: "Завтра",
-        day_info: formatDate(new Date(week.list[dayOfWeek + 1]?.dt * 1000)),
-        icon_id: "small_rain_sun",
-        temp: Math.floor(week.list[dayOfWeek + 1]?.main?.temp),
-        info: `${week.list[dayOfWeek + 1]?.weather[0]?.description}`,
-      },
-      {
-        day: weekdays[(dayOfWeek + 2) % 7],
-        day_info: formatDate(new Date(week.list[dayOfWeek + 7]?.dt * 1000)),
-        icon_id: "small_rain",
-        temp: Math.floor(week.list[dayOfWeek + 2]?.main?.temp),
-        info: `${week.list[dayOfWeek + 2]?.weather[0]?.description}`,
-      },
-      {
-        day: weekdays[(dayOfWeek + 3) % 7],
-        day_info: formatDate(new Date(week.list[dayOfWeek + 15]?.dt * 1000)),
-        icon_id: "mainly_cloudy",
-        temp: Math.floor(week.list[dayOfWeek + 3]?.main?.temp),
-        info: `${week.list[dayOfWeek + 3]?.weather[0]?.description}`,
-      },
-      {
-        day: weekdays[(dayOfWeek + 4) % 7],
-        day_info: formatDate(new Date(week.list[dayOfWeek + 23]?.dt * 1000)),
-        icon_id: "rain",
-        temp: Math.floor(week.list[dayOfWeek + 4]?.main?.temp),
-        info: `${week.list[dayOfWeek + 4]?.weather[0]?.description}`,
-      },
-      {
-        day: weekdays[(dayOfWeek + 5) % 7],
-        day_info: formatDate(new Date(week.list[dayOfWeek + 31]?.dt * 1000)),
-        icon_id: "sun",
-        temp: Math.floor(week.list[dayOfWeek + 5]?.main?.temp),
-        info: `${week.list[dayOfWeek + 5]?.weather[0]?.description}`,
-      },
-    ];
+  :  [
+    {
+      day: "Сегодня",
+      day_info: formatDate(today),
+      icon_id: "small_rain_sun",
+      temp: Math.floor(week.list[0]?.main?.temp),
+      info: `${week.list[0]?.weather[0]?.description}`,
+    },
+    {
+      day: "Завтра",
+      day_info: formatDate(new Date(week.list[7]?.dt * 1000)),
+      icon_id: "small_rain_sun",
+      temp: Math.floor(week.list[7]?.main?.temp),
+      info: `${week.list[7]?.weather[0]?.description}`,
+    },
+    {
+      day: weekdays[(dayOfWeek + 2) % 7],
+      day_info: formatDate(new Date(week.list[14]?.dt * 1000)),
+      icon_id: "small_rain",
+      temp: Math.floor(week.list[2]?.main?.temp),
+      info: `${week.list[14]?.weather[0]?.description}`,
+    },
+    {
+      day: weekdays[(dayOfWeek + 3) % 7],
+      day_info: formatDate(new Date(week.list[21]?.dt * 1000)),
+      icon_id: "mainly_cloudy",
+      temp: Math.floor(week.list[3]?.main?.temp),
+      info: `${week.list[21]?.weather[0]?.description}`,
+    },
+    {
+      day: weekdays[(dayOfWeek + 4) % 7],
+      day_info: formatDate(new Date(week.list[28]?.dt * 1000)),
+      icon_id: "rain",
+      temp: Math.floor(week.list[4]?.main?.temp),
+      info: `${week.list[28]?.weather[0]?.description}`,
+    },
+    {
+      day: weekdays[(dayOfWeek + 5) % 7],
+      day_info: formatDate(new Date(week.list[35]?.dt * 1000)),
+      icon_id: "sun",
+      temp: Math.floor(week.list[5]?.main?.temp),
+      info: `${week.list[35]?.weather[0]?.description}`,
+    },
+  ];
   return (
     <>
       <Tabs />

@@ -4,10 +4,14 @@
     position: relative;
     padding: 40px;
     max-width: 750px;
-    width: 40%;
+    width: 25rem;
     box-shadow: $box-shadow;
     border-radius: $border-radius;
     background: var(#{--components-background-default});
+    @media all and (max-width:900px) {
+      width: 70%;
+       margin:  0 auto 25px auto;
+   }
   }
   
   .item {
@@ -50,4 +54,5 @@
     position: absolute;
     top: 0;
     right: 0;
+    width: 100%;
   }

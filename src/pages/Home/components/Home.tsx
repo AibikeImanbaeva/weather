@@ -11,7 +11,7 @@ import { Props } from 'react-select';
 import { fetchWeekWeather } from '../../../store/thunks/fetchWeekWeather';
 
 import { useGeolocated } from "react-geolocated";
-
+import axios from 'axios';
 
 
 
@@ -24,22 +24,27 @@ export const Home = (props: Props)=> {
 const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
 const {week} = useCustomSelector(state => state.weekWeatherSliceReducer)
 
-
 useEffect(() => {
   if (coords) {
     const { latitude, longitude } = coords;
+    localStorage.setItem('coords', JSON.stringify({ latitude, longitude }))
     dispatch(fetchCurrentWeather(latitude.toString(), longitude.toString()))
   }
 }, [coords]);
 
+
+
+
 useEffect(() => {
-  const cachedWeek = localStorage.getItem('week');
-  if (cachedWeek) {
-    dispatch(fetchWeekWeather(JSON.parse(cachedWeek)));
+  const cachedCoords = localStorage.getItem('coords');
+  if (cachedCoords) {
+    const { latitude, longitude } = JSON.parse(cachedCoords);
+    dispatch(fetchCurrentWeather(latitude.toString(), longitude.toString()))
   } else {
     dispatch(fetchWeekWeather('bishkek'));
-  }
+  } 
 }, [dispatch]);
+
 
 
 

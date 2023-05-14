@@ -3,11 +3,15 @@
 .this__day {
     padding: 20px;
     max-width: 400px;
-    width: 100%;
+    width: 20rem;
     background: var(#{--components-background-default});
     box-shadow: $box-shadow;
     border-radius: 20px;
     height: 300px;
+    @media all and (max-width:900px) {
+       width: 70%;
+        margin:  0 auto 25px auto;
+    }
 }
 
 .top__block{
