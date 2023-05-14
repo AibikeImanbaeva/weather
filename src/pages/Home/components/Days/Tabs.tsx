@@ -1,29 +1,42 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styles  from './Days.module.scss'
 interface Props {}
 
 export const Tabs = (props: Props) => {
+  const [activeTab, setActiveTab] = useState('На 5 дней');
+
   const tabs = [
     {
-      value: 'На неделю',
+      value: 'На 5 дней',
+ 
     },
     {
-      value: 'На 10 дней',
-    },
-    {
-      value: 'На месяц',
+      value: 'По часам на сегодня',
+      
     },
   ];
+
+  const handleTabClick = (tabValue: string) => {
+    setActiveTab(tabValue);
+  };
+
+ 
   return (
     <div className={styles.tabs}>
-      <div className={styles.tabs__wrapper}>
-        {tabs.map(tab => (
-          <div className={styles.tab + ' ' + styles.active} key={tab.value}>
-            {tab.value}
-          </div>
-        ))}
-      </div>
-      <div className={styles.cancel}>Отменить</div>
+    <div className={styles.tabs__wrapper}>
+      {tabs.map(tab => (
+        <div
+          key={tab.value}
+          className={`${styles.tab} ${activeTab === tab.value ? styles.active : ''}`}
+          onClick={() => handleTabClick(tab.value)}
+        >
+          {tab.value}
+        </div>
+      ))}
     </div>
-  );
+    <div className={styles.cancel}>Отменить</div>
+    
+    
+  </div>
+);
 };
