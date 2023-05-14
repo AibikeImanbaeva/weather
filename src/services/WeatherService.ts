@@ -1,7 +1,7 @@
 import {AxiosResponse} from "axios";
-import { Weather } from "../store/types/types";
+import { Weather } from "../store/types/WeatherType";
 import api from "../axios";
-import { Week } from "../store/types/types";
+import { Week } from "../store/types/WeekType";
 export class WeatherService {
     static getCurrentWeather(latitude: string, longitude: string): Promise<AxiosResponse<Weather>> {
       return api.get<Weather>(`/weather?lat=${latitude}&lon=${longitude}`);

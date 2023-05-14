@@ -3,8 +3,8 @@ import { Card } from './Card';
 
 import styles  from './Days.module.scss';
 import { Tabs } from './Tabs';
-import { Week } from '../../../../store/types/types';
-import { Weather } from '../../../../store/types/types';
+import { Week } from '../../../../store/types/WeekType';
+import { Weather } from '../../../../store/types/WeatherType';
 export interface Day {
   day: string;
   day_info: string;
@@ -23,7 +23,7 @@ weather:Weather
 
 export const Days = ({ week }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
-// console.log(week)
+
   useEffect(() => {
     if (week && week.list) {
       setIsLoading(false);

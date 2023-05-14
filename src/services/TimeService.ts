@@ -1,5 +1,5 @@
 import {AxiosResponse} from "axios";
-import { Time } from "../store/types/types";
+import { Time } from "../store/types/TimeType";
 import api from "../axios";
 
 export class TimeService {

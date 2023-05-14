@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { Time } from '../types/types';
+import { Time } from '../types/TimeType';
 import { AxiosResponse } from 'axios';
 
 type CurrentTime = {

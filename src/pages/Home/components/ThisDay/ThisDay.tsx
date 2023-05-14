@@ -1,8 +1,8 @@
 import React from 'react';
 import { GlobalSvgSelector } from '../../../../assets/icons/global/GlobalSvgSelector';
-import { Weather } from '../../../../store/types/types';
+import { Weather } from '../../../../store/types/WeatherType';
 import styles from '../ThisDay/ThisDay.module.scss';
-import { Time } from '../../../../store/types/types';
+
 
 interface Props  {
   weather: Weather,
@@ -10,6 +10,10 @@ interface Props  {
 }
 
 
+export type Time = {
+  timezone: number 
+  }
+  
 
 
 const ThisDay = ({ weather, time }: Props) => {
