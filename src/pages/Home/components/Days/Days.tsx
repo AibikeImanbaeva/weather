@@ -11,7 +11,9 @@ export interface Day {
   icon_id: string;
   temp: number;
   info: string;
-
+pressure:number;
+clouds: string;
+wind:string;
 }
 
 
@@ -21,6 +23,9 @@ export interface CardInfo {
   icon_id: string;
   temp: number;
   info: string;
+pressure:number;
+clouds: string;
+wind: string;
   onClick: (cardInfo: CardInfo) => void;
 }
 export interface CardProps {
@@ -76,7 +81,7 @@ const onCardClick = (cardInfo:CardInfo) => {
   setSelectedCard(cardInfo)
 }
 
-console.log(week)
+// console.log(week)
 
 const days = isLoading
   ? []
@@ -87,6 +92,10 @@ const days = isLoading
       icon_id: "small_rain_sun",
       temp: Math.floor(week.list[0]?.main?.temp),
       info: `${week.list[0]?.weather[0]?.description}`,
+      pressure: Math.floor(week.list[0]?.main?.pressure),
+      wind: `${week.list[0]?.wind?.speed}`,
+      clouds: `${week.list[0]?.clouds?.all}`
+      
     },
     {
       day: "Завтра",
@@ -94,6 +103,9 @@ const days = isLoading
       icon_id: "small_rain_sun",
       temp: Math.floor(week.list[14]?.main?.temp),
       info: `${week.list[14]?.weather[0]?.description}`,
+      pressure: Math.floor(week.list[0]?.main?.pressure),
+      wind: `${week.list[14]?.wind?.speed}`,
+      clouds: `${week.list[14]?.clouds?.all}`
     },
     {
       day: weekdays[(dayOfWeek + 2) % 7],
@@ -101,6 +113,9 @@ const days = isLoading
       icon_id: "small_rain",
       temp: Math.floor(week.list[21]?.main?.temp),
       info: `${week.list[21]?.weather[0]?.description}`,
+      pressure: Math.floor(week.list[0]?.main?.pressure),
+      wind: `${week.list[21]?.wind?.speed}`,
+      clouds: `${week.list[21]?.clouds?.all}`
     },
     {
       day: weekdays[(dayOfWeek + 3) % 7],
@@ -108,6 +123,9 @@ const days = isLoading
       icon_id: "mainly_cloudy",
       temp: Math.floor(week.list[28]?.main?.temp),
       info: `${week.list[28]?.weather[0]?.description}`,
+      pressure: Math.floor(week.list[0]?.main?.pressure),
+      wind: `${week.list[28]?.wind?.speed}`,
+      clouds: `${week.list[28]?.clouds?.all}`
     },
     {
       day: weekdays[(dayOfWeek + 4) % 7],
@@ -115,6 +133,9 @@ const days = isLoading
       icon_id: "rain",
       temp: Math.floor(week.list[35]?.main?.temp),
       info: `${week.list[35]?.weather[0]?.description}`,
+      pressure: Math.floor(week.list[0]?.main?.pressure),
+      wind: `${week.list[35]?.wind?.speed}`,
+      clouds: `${week.list[35]?.clouds?.all}`
     },
     
   ];

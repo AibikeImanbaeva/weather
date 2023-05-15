@@ -20,7 +20,7 @@ export type Time = {
 
 const ThisDay = ({ weather, time, selectedCard }: Props) => {
  
-  console.log(selectedCard)
+  // console.log(selectedCard)
 
   const now = new Date();
   const offset = time.timezone / 60; // переводим смещение в часы

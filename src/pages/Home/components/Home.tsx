@@ -58,8 +58,8 @@ useEffect(() => {
   return (
     <div className={styles.home}>
       <div className={styles.wrapper}>
-        <ThisDay weather={weather} time={time} selectedCard={selectedCard}/>
-        <ThisDayInfo weather={weather}/>
+        <ThisDay weather={weather} time={time} selectedCard={selectedCard} />
+        <ThisDayInfo weather={weather} week={week} selectedCard={selectedCard}/>
       </div>
       <Days week={week} weather= {weather}onClick={handleCardClick} setSelectedCard={setSelectedCard}/>
     </div>
