@@ -2,21 +2,24 @@ import React from "react";
 import { GlobalSvgSelector } from "../../../../assets/icons/global/GlobalSvgSelector";
 
 import { Day } from "./Days";
-
+import { CardInfo } from "./Days";
 
 import styles from "./Days.module.scss";
 
-interface Props {
+interface CardProps {
   day: Day;
-
+  onClick: (cardInfo: CardInfo) => void;
 
   
 }
 
-export const Card = ({ day }: Props) => {
+export const Card = ({ day, onClick }: CardProps) => {
 //  console.log(day)
 //  let iconId;
-  
+const handleClick = () => {
+  onClick({ ...day, onClick }); 
+};
+
 let iconId;
 if (day.info ===  'overcast clouds') {
   iconId = "mainly_cloudy";
@@ -31,7 +34,7 @@ if (day.info ===  'overcast clouds') {
 }
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card}  onClick={handleClick}>
       <div className={styles.day}>{day.day}</div>
       <div className={styles.day__info}>{day.day_info}</div>
       <div className={styles.img}>

@@ -34,7 +34,7 @@ export const Tabs = (props: Props) => {
         </div>
       ))}
     </div>
-    <div className={styles.cancel}>Отменить</div>
+    
     
     
   </div>

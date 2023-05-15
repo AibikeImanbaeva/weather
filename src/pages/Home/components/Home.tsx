@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Days from './Days/Days';
 import styles from './Home.module.scss'
 import ThisDay from './ThisDay/ThisDay';
@@ -9,7 +9,7 @@ import { fetchCurrentWeather } from '../../../store/thunks/fetchCurrentWeather';
 import { useCustomSelector } from '../../../hooks/store';
 import { Props } from 'react-select';
 import { fetchWeekWeather } from '../../../store/thunks/fetchWeekWeather';
-
+import { CardInfo } from './Days/Days';
 import { useGeolocated } from "react-geolocated";
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ import axios from 'axios';
 export const Home = (props: Props)=> {
   const geo =  useGeolocated()
   const { coords } = geo || {};
-  // const { latitude, longitude } = geo
+
   const dispatch = useCustomDispatch();
   const { weather } = useCustomSelector(state=> state.currentWeatherSliceReducer);
 const { time } = useCustomSelector (state =>  state.currentTimeSliceReducer)
@@ -33,6 +33,12 @@ useEffect(() => {
 }, [coords]);
 
 
+
+const [selectedCard, setSelectedCard] = useState<CardInfo | null>(null);
+
+const handleCardClick = (cardInfo: CardInfo) => {
+  setSelectedCard(cardInfo);
+};
 
 
 useEffect(() => {
@@ -52,10 +58,10 @@ useEffect(() => {
   return (
     <div className={styles.home}>
       <div className={styles.wrapper}>
-        <ThisDay weather={weather} time={time}/>
+        <ThisDay weather={weather} time={time} selectedCard={selectedCard}/>
         <ThisDayInfo weather={weather}/>
       </div>
-      <Days week={week} weather={weather}/>
+      <Days week={week} weather= {weather}onClick={handleCardClick} setSelectedCard={setSelectedCard}/>
     </div>
   );
 };
