@@ -1,8 +1,12 @@
 import React,{useState} from 'react'
 import styles  from './Days.module.scss'
 interface Props {}
+type TabsProps = {
+  activeTab: string;
+  onClick: (tabValue: string) => void;
+};
 
-export const Tabs = (props: Props) => {
+export const Tabs = (props: TabsProps) => {
   const [activeTab, setActiveTab] = useState('На 5 дней');
 
   const tabs = [
