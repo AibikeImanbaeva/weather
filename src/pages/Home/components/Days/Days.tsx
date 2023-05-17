@@ -16,6 +16,13 @@ export interface Day {
 }
 
 
+export interface DayHour {
+  hour:string,
+  icon_id: string,
+  temp:number,
+  info:string
+}
+
 export interface CardInfo {
   day: string;
   day_info: string;
@@ -45,7 +52,9 @@ export const Days = ({ week, onClick, setSelectedCard }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('На 5 дней');
 
-
+  const handleTabClick = (tabValue: string) => {
+    setActiveTab(tabValue);
+  };
   useEffect(() => {
     if (week && week.list) {
       setIsLoading(false);
@@ -83,70 +92,46 @@ const renderCards = () => {
         <Card onClick={onCardClick} day={day} key={day.day} />
       ));
     case 'По часам на сегодня':
-      return weatherForHours.map((day : Day)=> (
-        <CardToday day={day} key={day.day} />
+      return weatherForHours.map((day : DayHour)=> (
+        <CardToday day={day} key={day.hour} />
       ));
     default:
       return null;
   }
 };
 
-// console.log(week)
+console.log(week)
 
+// const time = dateTimeString.split(" ")[1].substring(0, 5);
 
 const weatherForHours = isLoading ? []
 : [
+  
   {
-    day: "Сегодня",
-    day_info: formatDate(today),
-    icon_id: "small_rain_sun",
-    temp: Math.floor(week.list[0]?.main?.temp),
-    info: `${week.list[0]?.weather[0]?.description}`,
-  },
-  {
-    day: "Завтра",
-    day_info: formatDate(new Date(week.list[1]?.dt * 1000)),
-    icon_id: "small_rain_sun",
-    temp: Math.floor(week.list[1]?.main?.temp),
-    info: `${week.list[1]?.weather[0]?.description}`,
-  },
-  {
-    day: weekdays[(dayOfWeek + 2) % 7],
-    day_info: formatDate(new Date(week.list[2]?.dt * 1000)),
-    icon_id: "small_rain",
-    temp: Math.floor(week.list[2]?.main?.temp),
-    info: `${week.list[2]?.weather[0]?.description}`,
-  },
-  {
-    day: weekdays[(dayOfWeek + 3) % 7],
-    day_info: formatDate(new Date(week.list[3]?.dt * 1000)),
+  hour: `${week.list[0]?.dt_txt.split(" ")[1].substring(0, 5)}`,
     icon_id: "mainly_cloudy",
-    temp: Math.floor(week.list[3]?.main?.temp),
+    temp: Math.floor(week.list[0]?.main?.temp),
     info: `${week.list[3]?.weather[0]?.description}`,
   },
   {
-    day: weekdays[(dayOfWeek + 4) % 7],
-    day_info: formatDate(new Date(week.list[4]?.dt * 1000)),
+    hour: `${week.list[1]?.dt_txt.split(" ")[1].substring(0, 5)}`,
     icon_id: "rain",
-    temp: Math.floor(week.list[4]?.main?.temp),
+    temp: Math.floor(week.list[1]?.main?.temp),
     info: `${week.list[4]?.weather[0]?.description}`,
   },
   {
-    day: weekdays[(dayOfWeek + 4) % 7],
-    day_info: formatDate(new Date(week.list[4]?.dt * 1000)),
+    hour: `${week.list[2]?.dt_txt.split(" ")[1].substring(0, 5)}`,
     icon_id: "rain",
-    temp: Math.floor(week.list[4]?.main?.temp),
+    temp: Math.floor(week.list[2]?.main?.temp),
     info: `${week.list[4]?.weather[0]?.description}`,
   },
   {
-    day: weekdays[(dayOfWeek + 4) % 7],
-    day_info: formatDate(new Date(week.list[4]?.dt * 1000)),
+    hour: `${week.list[3]?.dt_txt.split(" ")[1].substring(0, 5)}`,
     icon_id: "rain",
-    temp: Math.floor(week.list[4]?.main?.temp),
+    temp: Math.floor(week.list[3]?.main?.temp),
     info: `${week.list[4]?.weather[0]?.description}`,
   },{
-    day: weekdays[(dayOfWeek + 4) % 7],
-    day_info: formatDate(new Date(week.list[4]?.dt * 1000)),
+    hour: `${week.list[4]?.dt_txt.split(" ")[1].substring(0, 5)}`,
     icon_id: "rain",
     temp: Math.floor(week.list[4]?.main?.temp),
     info: `${week.list[4]?.weather[0]?.description}`,
@@ -197,7 +182,7 @@ const days = isLoading
   ];
   return (
     <>
-      <Tabs activeTab={activeTab} onClick={setActiveTab} />
+      <Tabs activeTab={activeTab} onClick={handleTabClick} />
 
 <div className={styles.days}>
   {isLoading ? <p>Loading...</p> : renderCards()}

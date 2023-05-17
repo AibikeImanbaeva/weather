@@ -22,6 +22,7 @@ export const Tabs = (props: TabsProps) => {
 
   const handleTabClick = (tabValue: string) => {
     setActiveTab(tabValue);
+    props.onClick(tabValue);
   };
 
  
