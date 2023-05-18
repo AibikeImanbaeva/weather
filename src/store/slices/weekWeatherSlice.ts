@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import { Week} from '../types/types';
+import { Week} from '../types/WeekType';
 import { AxiosResponse } from 'axios';
 
 type WeekWeather = {

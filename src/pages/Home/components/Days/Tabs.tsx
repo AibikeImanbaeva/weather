@@ -1,8 +1,12 @@
 import React,{useState} from 'react'
 import styles  from './Days.module.scss'
 interface Props {}
+type TabsProps = {
+  activeTab: string;
+  onClick: (tabValue: string) => void;
+};
 
-export const Tabs = (props: Props) => {
+export const Tabs = (props: TabsProps) => {
   const [activeTab, setActiveTab] = useState('На 5 дней');
 
   const tabs = [
@@ -18,6 +22,7 @@ export const Tabs = (props: Props) => {
 
   const handleTabClick = (tabValue: string) => {
     setActiveTab(tabValue);
+    props.onClick(tabValue);
   };
 
  
@@ -34,7 +39,7 @@ export const Tabs = (props: Props) => {
         </div>
       ))}
     </div>
-    <div className={styles.cancel}>Отменить</div>
+    
     
     
   </div>

@@ -1,20 +1,26 @@
 import React from 'react';
 import { GlobalSvgSelector } from '../../../../assets/icons/global/GlobalSvgSelector';
-import { Weather } from '../../../../store/types/types';
+import { Weather } from '../../../../store/types/WeatherType';
 import styles from '../ThisDay/ThisDay.module.scss';
-import { Time } from '../../../../store/types/types';
+import { CardInfo } from '../Days/Days';
+
 
 interface Props  {
   weather: Weather,
-  time: Time
+  time: Time,
+  selectedCard: CardInfo | null;
 }
 
 
-
-
-const ThisDay = ({ weather, time }: Props) => {
- 
+export type Time = {
+  timezone: number 
+  }
   
+
+
+const ThisDay = ({ weather, time, selectedCard }: Props) => {
+ 
+  // console.log(selectedCard)
 
   const now = new Date();
   const offset = time.timezone / 60; // переводим смещение в часы
@@ -28,8 +34,8 @@ const ThisDay = ({ weather, time }: Props) => {
       <div className={styles.top__block}>
         <div className={styles.top__block_wrapper}>
 
-      <div className={styles.this__temp}>{Math.floor(weather.main.temp)}</div>
-      <div className={styles.this__day_name}>сегодня</div>
+      <div className={styles.this__temp}> {selectedCard ? Math.floor(selectedCard.temp) : Math.floor(weather.main.temp)}</div>
+      <div className={styles.this__day_name}>{selectedCard ? (selectedCard.day_info) : 'сегодня'}</div>
         </div>
      <GlobalSvgSelector  id='sun'/>
       </div>

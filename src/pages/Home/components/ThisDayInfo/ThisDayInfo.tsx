@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../ThisDayInfo/ThisDayInfo.module.scss";
 import cloud from "../../../../assets/images/cloud.png";
 import ThisDayItem from "./ThisDayItem";
-import { Weather } from "../../../../store/types/types";
+import { Weather } from "../../../../store/types/WeatherType";
 type Props = {
   weather: Weather
 };
